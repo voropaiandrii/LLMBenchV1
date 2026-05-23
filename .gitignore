@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+
+# Tests / tooling
+.pytest_cache/
+.ruff_cache/
+
+# Local benchmark results
+output/
+benchmarks/
+*.json
+*.txt
+
+# Environment
+.env
+
+# macOS
+.DS_Store
