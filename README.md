@@ -9,7 +9,26 @@ Universal streaming benchmark for self-hosted LLM servers. Measures **output tok
 
 ## Install
 
-### Option A — pyenv without global Python shims (recommended)
+### Shell scripts (easiest)
+
+From the repo root:
+
+```bash
+./setup.sh    # once — creates .venv and installs llm-bench
+./bench.sh --help
+./bench.sh --host gpu-server --port 11434 --api ollama --model llama3.2:3b
+```
+
+`./bench.sh` forwards all flags to `llm-bench` (same options as the CLI reference below). No `source .venv/bin/activate` needed.
+
+Requires Python 3.11+ available via pyenv or on `PATH`. If you use pyenv, install the version from [`.python-version`](.python-version) first:
+
+```bash
+pyenv install 3.11.11 --skip-existing
+./setup.sh
+```
+
+### Option A — pyenv without global Python shims (manual)
 
 Use pyenv to **install** Python 3.11+, but create the venv with an **explicit interpreter path**. This avoids adding pyenv shims to your shell `PATH` (no `eval "$(pyenv init -)"` in `.zshrc` / `.bashrc`), so system `python3` is not redirected globally.
 
@@ -88,6 +107,18 @@ pip install -e ".[dev]"
 
 
 ## Quick start
+
+With shell wrappers (after `./setup.sh`):
+
+```bash
+# Auto-detect API from host (default port 8000)
+./bench.sh --host llm-server.local --model llama3.2:3b
+
+# Direct Ollama
+./bench.sh --host gpu-server --port 11434 --api ollama --model llama3.2:3b
+```
+
+Or with `llm-bench` directly (venv activated):
 
 ```bash
 # Auto-detect API from host (default port 8000)
